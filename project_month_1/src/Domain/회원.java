@@ -9,12 +9,12 @@ public class 회원 {
 	private String 전화번호;
 	private String 주소;
 	private int 회원번호;
-	private Boolean 관리자여부;
+	private int 관리자여부;
 	
 	// 생성자
 	public 회원() {}
 	
-	public 회원(String 이름, String 전화번호, String 주소, int 회원번호, Boolean 관리자여부) {
+	public 회원(String 이름, String 전화번호, String 주소, int 회원번호, Integer 관리자여부) {
 		super();
 		this.이름 = 이름;
 		this.전화번호 = 전화번호;
@@ -56,11 +56,11 @@ public class 회원 {
 		this.회원번호 = 회원번호;
 	}
 
-	public Boolean get관리자여부() {
+	public Integer get관리자여부() {
 		return 관리자여부;
 	}
 
-	public void set관리자여부(Boolean 관리자여부) {
+	public void set관리자여부(Integer 관리자여부) {
 		this.관리자여부 = 관리자여부;
 	}
 
@@ -78,9 +78,9 @@ public class 회원 {
 			}
 		}
 		
-		//회원 temp2 = new 회원(이름, 전화번호, 주소, (dto.회원목록.size()+1), False);
+		회원 temp2 = new 회원(이름, 전화번호, 주소, (dto.회원목록.size()+1), 0);
 		
-		//dto.회원목록.add(temp2);
+		dto.회원목록.add(temp2);
 	}
 	
 	public void 메뉴() {
