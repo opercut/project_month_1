@@ -92,7 +92,7 @@ public class 관리자 extends 회원 {
 		
 		관리자 temp2 = new 관리자(아이디, 비밀번호, 이름, 전화번호, 주소);
 		
-		dto.회원리스트.add(temp2);
+		dto.관리자리스트.add(temp2);
 	}
 	
 	@Override
@@ -197,31 +197,77 @@ public class 관리자 extends 회원 {
 		} // for end
 	}
 	
+	public void 회원정보_전체( ) {
+		System.out.println("[회원 리스트]");
+		System.out.println("==================================================");
+		System.out.println("아이디\t이름\t전화번호\t주소");
+		System.out.println("==================================================");
+		
+		for (회원 temp : dto.회원리스트) {
+			System.out.println(temp.get아이디() + "\t" +
+		                       temp.get이름() + "\t" +
+					           temp.get전화번호() + "\t" +
+		                       temp.get주소());
+			
+		} // for end
+	}
+	
+	public void 회원정보_관리자() {
+		회원정보_전체();
+		
+		while (true) {
+			System.out.println("\n==================================================");
+			System.out.println("1.회원정보 수정  2.종료");
+			System.out.print("---> 메뉴 선택 : "); int 선택 = BookManager.scanner.nextInt();
+			
+			회원 temp = new 회원();
+			
+			if (선택 == 1) {
+				System.out.println("[회원정보 수정]");
+				System.out.print("---> 수정할 회원 아이디 입력 :"); String 아이디 = BookManager.scanner.next();
+				temp.회원정보(아이디);
+			}
+			else if (선택 == 2) {
+				System.out.println("---> 이전 메뉴 이동");
+				break;
+			}
+			else {
+				System.out.println("---> 제시한 메뉴 중 선택해주세요 [다시 입력]");
+			}			
+			
+		} // while end
+
+	}
+	
 	@Override
 	public void 메뉴(String 아이디) {
-		System.out.println("===== 메뉴 =====");
-		System.out.println("1.회원정보  2.책목록보기  3.책등록  4.대리리스트(전체)  5.관리자관리  6.종료");
-		System.out.print("--> 선택 :"); int 선택 = BookManager.scanner.nextInt();
+		while (true) {
+			System.out.println("===== 메뉴 =====");
+			System.out.println("1.회원정보  2.책목록보기  3.책등록  4.대여리스트(전체)  5.관리자관리  6.종료");
+			System.out.print("--> 선택 :"); int 선택 = BookManager.scanner.nextInt();
+			
+			if (선택 == 1) { // 회원 정보 수정
+				회원정보_관리자();
+			}
+			else if (선택 == 2) {
+				
+			}
+			else if (선택 == 3) {
+				
+			}
+			else if (선택 == 4) {
 		
-		if (선택 == 1) {
-			회원정보(아이디);
-		}
-		else if (선택 == 2) {
+			}
+			else if (선택 == 5) { // 해당 관리자 본인 정보 수정
+				회원정보(아이디); 
+			}
+			else if (선택 == 6) {
+				System.out.println("---> 로그아웃");
+				return;
+			}	
 			
-		}
-		else if (선택 == 3) {
-			
-		}
-		else if (선택 == 4) {
+		} // while end
 	
-		}
-		else if (선택 == 5) {
-	
-		}
-		else if (선택 == 6) {
-			System.out.println("---> 로그아웃");
-			return;
-		}		
 	}
 
 	

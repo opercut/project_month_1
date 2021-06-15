@@ -15,7 +15,6 @@ public class 회원 {
 	public 회원() {}
 	
 	public 회원(String 아이디, String 비밀번호, String 이름, String 전화번호, String 주소) {
-		super();
 		this.아이디 = 아이디;
 		this.비밀번호 = 비밀번호;
 		this.이름 = 이름;
@@ -109,16 +108,24 @@ public class 회원 {
 	}
 	
 	public void 회원정보(String 아이디) {
-		System.out.println("=== [회원 정보] ===");
 		
-		for (회원 temp : dto.회원리스트) {
-			if (temp.get아이디().equals(아이디)) {
-				String 기존_아이디 = temp.get아이디();
-				String 기존_비밀번호 = temp.get비밀번호();
-				String 기존_이름 = temp.get이름();
-				String 기존_전화번호 = temp.get전화번호();
-				String 기존_주소 = temp.get주소();
+		int 인덱스 = 회원찾기(아이디);
+		
+		if (인덱스 == -1) {
+			System.out.println("---> 회원 정보 찾는데 실패하였습니다");
+			return;
+		}
+		else {
+			while (true) {
+				회원 temp = new 회원();
 				
+				String 기존_아이디 = dto.회원리스트.get(인덱스).아이디;
+				String 기존_비밀번호 = dto.회원리스트.get(인덱스).비밀번호;
+				String 기존_이름 = dto.회원리스트.get(인덱스).이름;
+				String 기존_전화번호 = dto.회원리스트.get(인덱스).전화번호;
+				String 기존_주소 = dto.회원리스트.get(인덱스).주소;
+				
+				System.out.println("=== [회원 정보] ===");
 				System.out.println("[1] 아이디 : " + 기존_아이디);
 				System.out.println("[2] 비밀번호 : " + 기존_비밀번호);
 				System.out.println("[3] 이름 : " + 기존_이름);
@@ -126,91 +133,82 @@ public class 회원 {
 				System.out.println("[5] 주소 : " + 기존_주소);
 				System.out.println("=============");
 				
-				while (true) {
-					System.out.println("\n\n[회원정보 수정]");
-					System.out.println("1.비밀번호  2.이름  3.전화번호  4.주소  5.이전 메뉴");
-					System.out.print("---> 메뉴 선택 : "); int 선택 = BookManager.scanner.nextInt();
+				System.out.println("\n[회원정보 수정]");
+				System.out.println("1.비밀번호  2.이름  3.전화번호  4.주소  5.이전 메뉴");
+				System.out.print("---> 메뉴 선택 : "); int 선택 = BookManager.scanner.nextInt();
 
-					int 인덱스 = 회원찾기(아이디);
+				if (선택 == 1) { // 비밀번호
+					System.out.print("---> 변경할 비밀번호 입력 : "); 
+					String 비밀번호 = BookManager.scanner.next();
 					
-					if (인덱스 == -1) {
-						System.out.println("---> 회원 정보 찾는데 실패하였습니다");
-						return;
-					}
-					else {
-						if (선택 == 1) { // 비밀번호
-							System.out.print("---> 변경할 비밀번호 입력 : "); 
-							String 비밀번호 = BookManager.scanner.next();
-							
-							temp.set비밀번호(비밀번호);
-							dto.회원리스트.set(인덱스, temp);
-							// 파일저장 추가 필요
-						}
-						else if (선택 == 2) { // 이름
-							System.out.print("---> 변경할 이름 입력 : "); 
-							String 이름 = BookManager.scanner.next();
-							
-							temp.set이름(이름);
-							dto.회원리스트.set(인덱스, temp);
-							// 파일저장 추가 필요							
-						}
-						else if (선택 == 3) { // 전화번호
-							System.out.print("---> 변경할 전화번호 입력 : "); 
-							String 전화번호 = BookManager.scanner.next();
-							
-							temp.set전화번호(전화번호);
-							dto.회원리스트.set(인덱스, temp);
-							// 파일저장 추가 필요							
-						}
-						else if (선택 == 4) { // 주소
-							System.out.print("---> 변경할 비밀번호 입력 : "); 
-							String 주소 = BookManager.scanner.next();
-							
-							temp.set주소(주소);
-							dto.회원리스트.set(인덱스, temp);
-							// 파일저장 추가 필요							
-						}
-						else if (선택 == 5) { // 이전 메뉴
-							System.out.println("---> 이번 메뉴 이동합니다");
-							return;
-						}
-						else { 
-							System.out.println("---> 제시한 메뉴 중 선택해주세요 [다시 입력]");
-						}											
+					temp.set비밀번호(비밀번호);
+					dto.회원리스트.set(인덱스, temp);
+					// 파일저장 추가 필요
+				}
+				else if (선택 == 2) { // 이름
+					System.out.print("---> 변경할 이름 입력 : "); 
+					String 이름 = BookManager.scanner.next();
+					
+					temp.set이름(이름);
+					dto.회원리스트.set(인덱스, temp);
+					// 파일저장 추가 필요							
+				}
+				else if (선택 == 3) { // 전화번호
+					System.out.print("---> 변경할 전화번호 입력 : "); 
+					String 전화번호 = BookManager.scanner.next();
 						
-					}					
-					
-				} // while end				
-				
-			}
-		} // for end
+					temp.set전화번호(전화번호);
+					dto.회원리스트.set(인덱스, temp);
+					// 파일저장 추가 필요							
+				}
+				else if (선택 == 4) { // 주소
+					System.out.print("---> 변경할 비밀번호 입력 : "); 
+					String 주소 = BookManager.scanner.next();
+						
+					temp.set주소(주소);
+					dto.회원리스트.set(인덱스, temp);
+					// 파일저장 추가 필요							
+				}
+				else if (선택 == 5) { // 이전 메뉴
+					System.out.println("---> 이번 메뉴 이동합니다");
+					return;
+				}
+				else { 
+					System.out.println("---> 제시한 메뉴 중 선택해주세요 [다시 입력]");
+				}											
+			} // while end
+		}
 		
 	}
 	
 	public void 메뉴(String 아이디) {
-		System.out.println("===== 메뉴 =====");
-		System.out.println("1.회원정보  2.책목록보기  3.대여  4.대리리스트(본인)  5.반납  6.종료");
-		System.out.print("--> 선택 :"); int 선택 = BookManager.scanner.nextInt();
+		while (true) {
+			System.out.println("===== 메뉴 =====");
+			System.out.println("1.회원정보  2.책목록보기  3.대여  4.대리리스트(본인)  5.반납  6.종료");
+			System.out.print("--> 선택 :"); int 선택 = BookManager.scanner.nextInt();
+			
+			if (선택 == 1) {
+				회원정보(아이디);
+			}
+			else if (선택 == 2) {
+				
+			}
+			else if (선택 == 3) {
+				
+			}
+			else if (선택 == 4) {
 		
-		if (선택 == 1) {
-			회원정보(아이디);
-		}
-		else if (선택 == 2) {
+			}
+			else if (선택 == 5) {
+		
+			}
+			else if (선택 == 6) {
+				System.out.println("---> 로그아웃");
+				return;
+			}
 			
-		}
-		else if (선택 == 3) {
-			
-		}
-		else if (선택 == 4) {
-	
-		}
-		else if (선택 == 5) {
-	
-		}
-		else if (선택 == 6) {
-			System.out.println("---> 로그아웃");
-			return;
-		}
+		} // while end
+
 	}
 	
 } // class end
