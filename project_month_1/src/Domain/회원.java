@@ -71,16 +71,16 @@ public class 회원 {
 		System.out.print("1.이름 : "); String 전화번호 = BookManager.scanner.next();
 		System.out.print("1.이름 : "); String 주소 = BookManager.scanner.next();
 		
-		for (회원 temp : dto.회원목록) {
+		for (회원 temp : dto.회원리스트) {
 			if (temp.이름.equals(이름) && temp.전화번호.equals(전화번호) && temp.주소.equals(주소)) {
 				System.out.println("---> 이미 가입한 회원입니다. [다시 입력]");
 				return;
 			}
 		}
 		
-		회원 temp2 = new 회원(이름, 전화번호, 주소, (dto.회원목록.size()+1), 0);
+		회원 temp2 = new 회원(이름, 전화번호, 주소, (dto.회원리스트.size()+1), 0);
 		
-		dto.회원목록.add(temp2);
+		dto.회원리스트.add(temp2);
 	}
 	
 	public void 메뉴() {
