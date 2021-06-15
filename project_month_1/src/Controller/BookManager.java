@@ -8,6 +8,12 @@ public class BookManager {
 	
 	public static void main(String[] args) {
 	
+		start_BookManager();
+		
+	} // main end
+	
+	public static void start_BookManager() {
+		
 		while (true) {
 			System.out.println("*** 도서 대여 프로그램 ***");
 			System.out.println("1.회원가입  2.로그인  3.종료  4.관리자전용");
@@ -28,8 +34,8 @@ public class BookManager {
 			else {
 				System.out.println("---> 제시한 메뉴 번호를 입력해주세요~ [다시 입력]");
 			}			
-		} // while end
+		} // while end	
 		
-	} // main end
+	}
 	
 } // class end
