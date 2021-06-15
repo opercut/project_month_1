@@ -16,7 +16,7 @@ public class BookManager {
 		
 		while (true) {
 			System.out.println("*** 도서 대여 프로그램 ***");
-			System.out.println("1.회원가입  2.로그인  3.종료  4.관리자전용");
+			System.out.println("1.회원가입  2.회원로그인  3.종료  4.관리자전용");
 			System.out.print("---> 메뉴선택 : "); int 선택 = scanner.nextInt();
 			
 			if (선택 == 1) {
@@ -26,6 +26,7 @@ public class BookManager {
 				
 			}
 			else if (선택 == 3) {
+				System.out.println("---> 도서 대여 프로그램 종료!!!");
 				break;
 			}
 			else if (선택 == 4) {
