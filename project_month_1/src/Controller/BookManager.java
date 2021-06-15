@@ -29,7 +29,7 @@ public class BookManager {
 				temp.회원가입();
 			}
 			else if (선택 == 2) {
-				System.out.println("[로그인]");
+				System.out.println("[회원 로그인]");
 				System.out.print("회원 아이디 : "); String 아이디 = scanner.next();
 				System.out.print("회원 비밀번호 : "); String 비밀번호 = scanner.next();
 				
@@ -45,6 +45,36 @@ public class BookManager {
 				break;
 			}
 			else if (선택 == 4) {
+				
+				while (true) {
+					System.out.println("******* 관리자 전용 화면 *******");
+					System.out.println("1.관리자등록  2.로그인  3.종료");
+					System.out.print("---> 메뉴 선택 :"); int 선택2 = scanner.nextInt();					
+
+					if (선택2 == 1) {
+						temp2.회원가입();
+					}
+					else if (선택2 == 2) {
+						System.out.println("[관리자 로그인]");
+						System.out.print("관리자 아이디 : "); String 아이디 = scanner.next();
+						System.out.print("관리자 비밀번호 : "); String 비밀번호 = scanner.next();
+						
+						if (temp2.로그인(아이디, 비밀번호) == 0) { // 정상 로그인
+							temp2.메뉴(아이디);
+						}
+						else { // 로그인 실패 
+							System.out.println("---> 로그인에 실패하셨습니다 [다시 실행]");
+						}						
+						
+					}
+					else if (선택2 == 3) {
+						System.out.println("---> 관리자 화면 종료!!!");
+						break;
+					}
+					else {
+						System.out.println("---> 제시한 메뉴 중 선택해주세요 [다시 입력]");
+					}
+				} // while end
 				
 			}
 			else {

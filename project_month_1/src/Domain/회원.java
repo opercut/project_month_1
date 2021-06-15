@@ -109,8 +109,7 @@ public class 회원 {
 	}
 	
 	public void 회원정보(String 아이디) {
-		
-		System.out.println("=== [회원정보] ===");
+		System.out.println("=== [회원 정보] ===");
 		
 		for (회원 temp : dto.회원리스트) {
 			if (temp.get아이디().equals(아이디)) {
@@ -165,7 +164,7 @@ public class 회원 {
 						}
 						else if (선택 == 4) { // 주소
 							System.out.print("---> 변경할 비밀번호 입력 : "); 
-							String 비밀번호 = BookManager.scanner.next();
+							String 주소 = BookManager.scanner.next();
 							
 							temp.set주소(주소);
 							dto.회원리스트.set(인덱스, temp);
