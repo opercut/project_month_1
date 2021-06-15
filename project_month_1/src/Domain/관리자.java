@@ -78,16 +78,17 @@ public class 관리자 extends 회원 {
 		System.out.println("***** 관리자 등록 *****");
 		System.out.print("1.아이디 : "); String 아이디 = BookManager.scanner.next();
 		System.out.print("2.비밀번호 : "); String 비밀번호 = BookManager.scanner.next();
-		System.out.print("3.이름 : "); String 이름 = BookManager.scanner.next();
-		System.out.print("4.전화번호 : "); String 전화번호 = BookManager.scanner.next();
-		System.out.print("5.주소 : "); String 주소 = BookManager.scanner.next();
 		
 		for (관리자 temp : dto.관리자리스트) {
 			if (temp.get아이디().equals(아이디) && temp.get비밀번호().equals(비밀번호)) {
-				System.out.println("---> 이미 가입한 회원입니다. [다시 입력]");
+				System.out.println("---> 이미 등록한 관리자입니다. [다시 입력]");
 				return;
 			}
 		}
+		
+		System.out.print("3.이름 : "); String 이름 = BookManager.scanner.next();
+		System.out.print("4.전화번호 : "); String 전화번호 = BookManager.scanner.next();
+		System.out.print("5.주소 : "); String 주소 = BookManager.scanner.next();		
 		
 		관리자 temp2 = new 관리자(아이디, 비밀번호, 이름, 전화번호, 주소);
 		
@@ -95,15 +96,20 @@ public class 관리자 extends 회원 {
 	}
 	
 	@Override
-	public Integer 로그인() {
-		// TODO Auto-generated method stub
-		return super.로그인();
+	public Integer 로그인(String 아이디, String 비밀번호) {
+		for (관리자 temp : dto.관리자리스트) {
+			if (temp.get아이디().equals(아이디) && temp.get비밀번호().equals(비밀번호)) {
+				System.out.println("---> [관리자] 정상 로그인 되었습니다!!!");
+				return 0;
+			}
+		}
+		
+		return 1;
 	}
 	
 	@Override
-	public void 메뉴() {
-		// TODO Auto-generated method stub
-		super.메뉴();
+	public void 메뉴(String 아이디) {
+		
 	}
 
 	

@@ -68,9 +68,6 @@ public class 회원 {
 		System.out.println("***** 회원가입 *****");
 		System.out.print("1.아이디 : "); String 아이디 = BookManager.scanner.next();
 		System.out.print("2.비밀번호 : "); String 비밀번호 = BookManager.scanner.next();
-		System.out.print("3.이름 : "); String 이름 = BookManager.scanner.next();
-		System.out.print("4.전화번호 : "); String 전화번호 = BookManager.scanner.next();
-		System.out.print("5.주소 : "); String 주소 = BookManager.scanner.next();
 		
 		for (회원 temp : dto.회원리스트) {
 			if (temp.get아이디().equals(아이디) && temp.get비밀번호().equals(비밀번호)) {
@@ -78,17 +75,18 @@ public class 회원 {
 				return;
 			}
 		}
+
+		System.out.print("3.이름 : "); String 이름 = BookManager.scanner.next();
+		System.out.print("4.전화번호 : "); String 전화번호 = BookManager.scanner.next();
+		System.out.print("5.주소 : "); String 주소 = BookManager.scanner.next();
 		
 		회원 temp2 = new 회원(아이디, 비밀번호, 이름, 전화번호, 주소);
 		
 		dto.회원리스트.add(temp2);
 	}
 	
-	public Integer 로그인() {
-		System.out.println("[로그인]");
-		System.out.print("회원 아이디 : "); String 아이디 = BookManager.scanner.next();
-		System.out.print("회원 비밀번호 : "); String 비밀번호 = BookManager.scanner.next();
-		
+	public Integer 로그인(String 아이디, String 비밀번호) {
+
 		for (회원 temp : dto.회원리스트) {
 			if (temp.get아이디().equals(아이디) && temp.get비밀번호().equals(비밀번호)) {
 				System.out.println("---> 정상 로그인 되었습니다!!!");
@@ -99,7 +97,7 @@ public class 회원 {
 		return 1;
 	}
 	
-	public void 메뉴() {
+	public void 메뉴(String 아이디) {
 		System.out.println("===== 메뉴 =====");
 		System.out.println("1.회원정보  2.책목록보기  3.대여  4.대리리스트(본인)  5.반납  6.종료");
 		System.out.print("--> 선택 :"); int 선택 = BookManager.scanner.nextInt();
